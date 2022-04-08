@@ -26,8 +26,8 @@ const jitsiNameSchemeMattermost = "mattermost"
 const configChangeEvent = "config_update"
 
 type UserConfig struct {
-	Embedded     bool   `json:"embedded"`
 	NamingScheme string `json:"naming_scheme"`
+	Embedded     bool   `json:"embedded"`
 }
 
 type Plugin struct {
@@ -39,13 +39,12 @@ type Plugin struct {
 	// configurationLock synchronizes access to the configuration.
 	configurationLock sync.RWMutex
 
+	botID string
 	// configuration is the active plugin configuration. Consult getConfiguration and
 	// setConfiguration for usage.
 	configuration *configuration
 
 	b *i18n.Bundle
-
-	botID string
 }
 
 func (p *Plugin) OnActivate() error {
@@ -114,8 +113,8 @@ type Claims struct {
 	jwt.StandardClaims
 	Context   Context `json:"context"`
 	Room      string  `json:"room,omitempty"`
-	Moderator bool    `json:"moderator,omitempty"`  // only the user started the meeting is moderator
 	CreatorID string  `json:"creator_id,omitempty"` // store id of user who start the meeting
+	Moderator bool    `json:"moderator,omitempty"`  // only the user started the meeting is moderator
 }
 
 func verifyJwt(secret string, jwtToken string) (*Claims, error) {

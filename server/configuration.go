@@ -26,13 +26,13 @@ import (
 // copy appropriate for your types.
 type configuration struct {
 	JitsiURL               string
-	JitsiJWT               bool
-	JitsiEmbedded          bool
 	JitsiAppID             string
 	JitsiAppSecret         string
-	JitsiLinkValidTime     int
 	JitsiNamingScheme      string
+	JitsiLinkValidTime     int
 	JitsiCompatibilityMode bool
+	JitsiJWT               bool
+	JitsiEmbedded          bool
 }
 
 const publicJitsiServerURL = "https://meet.jit.si"
